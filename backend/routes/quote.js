@@ -13,12 +13,19 @@ const validateQuote = [
         .withMessage('Invalid product type'),
     body('size').trim().notEmpty().withMessage('Size is required'),
     body('height').trim().notEmpty().withMessage('Height is required'),
-    body('requiredFor').custom((value) => {
-        if (!value || (!value.warehouse && !value.shipment && !value.logistics)) {
-            throw new Error('Please select at least one option for Required For');
-        }
-        return true;
-    }),
+    body('requiredFor')
+        .custom((value) => {
+            // Check if at least one option is true
+            if (!value || typeof value !== 'object') {
+                throw new Error('Required For options must be provided');
+            }
+            
+            const hasAtLeastOne = value.warehouse || value.shipment || value.logistics;
+            if (!hasAtLeastOne) {
+                throw new Error('Please select at least one option for Required For');
+            }
+            return true;
+        }),
     body('company').optional().trim(),
     body('palletType.way2').optional().isBoolean(),
     body('palletType.way4').optional().isBoolean(),

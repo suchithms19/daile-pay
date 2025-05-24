@@ -301,15 +301,15 @@
                 <label class="required">Required For</label>
                 <div class="checkbox-grid">
                     <div class="checkbox-item">
-                        <input type="checkbox" id="warehouse" name="required-for" required>
+                        <input type="checkbox" id="warehouse" name="required-for">
                         <label for="warehouse">Warehouse</label>
                     </div>
                     <div class="checkbox-item">
-                        <input type="checkbox" id="shipment" name="required-for" required>
+                        <input type="checkbox" id="shipment" name="required-for">
                         <label for="shipment">Shipment</label>
                     </div>
                     <div class="checkbox-item">
-                        <input type="checkbox" id="logistics" name="required-for" required>
+                        <input type="checkbox" id="logistics" name="required-for">
                         <label for="logistics">Logistics</label>
                     </div>
                 </div>
@@ -359,163 +359,146 @@
         </div>
     </footer>
 
+    <script src="js/api.js"></script>
     <script>
-        // Product sizes data
-        const productSizes = {
-            'wooden-pallets': [
-                '1200 x 800 mm',
-                '1200 x 1000 mm',
-                '1100 x 1100 mm',
-                '1000 x 1000 mm',
-                '1300 x 1100 mm'
-            ],
-            'plastic-pallets': [
-                '1200 x 800 mm',
-                '1200 x 1000 mm',
-                '1100 x 1100 mm',
-                '1000 x 1000 mm',
-                '1300 x 1100 mm'
-            ],
-            'wooden-crates': [
-                'Custom Sizes Available',
-                'Standard: 1200 x 800 x 800 mm',
-                'Standard: 1200 x 1000 x 1000 mm'
-            ],
-            'plastic-crates': [
-                'Custom Sizes Available',
-                'Standard: 1200 x 800 x 800 mm',
-                'Standard: 1200 x 1000 x 1000 mm'
-            ],
-            'plastic-boxes': [
-                'Custom Sizes Available',
-                'Small: 600 x 400 x 400 mm',
-                'Medium: 800 x 600 x 600 mm',
-                'Large: 1000 x 800 x 800 mm'
-            ]
-        };
-
-        // Dynamic size dropdown
-        document.getElementById('product').addEventListener('change', function() {
-            const sizeSelect = document.getElementById('size');
-            sizeSelect.innerHTML = '';
-            sizeSelect.disabled = !this.value;
-            
-            if (this.value) {
-                const sizes = productSizes[this.value];
-                sizes.forEach(size => {
-                    const option = document.createElement('option');
-                    option.value = size;
-                    option.textContent = size;
-                    sizeSelect.appendChild(option);
-                });
-            } else {
-                const option = document.createElement('option');
-                option.value = '';
-                option.textContent = 'First select product type';
-                sizeSelect.appendChild(option);
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Test backend connection on page load
+            const isConnected = await testBackendConnection();
+            if (!isConnected) {
+                alert('Warning: Cannot connect to the server. The form will not work until the server is running.');
             }
-        });
 
-        // Form validation
-        document.getElementById('quoteForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            
-            // Validate required checkboxes
-            const requiredCheckboxes = document.querySelectorAll('[name="required-for"]');
-            let atLeastOneChecked = false;
-            
-            requiredCheckboxes.forEach(checkbox => {
-                if (checkbox.checked) {
-                    atLeastOneChecked = true;
+            const quoteForm = document.getElementById('quoteForm');
+            const submitButton = quoteForm.querySelector('button[type="submit"]');
+            const requiredForError = document.getElementById('requiredForError');
+
+            // Remove any existing event listeners
+            const newQuoteForm = quoteForm.cloneNode(true);
+            quoteForm.parentNode.replaceChild(newQuoteForm, quoteForm);
+
+            newQuoteForm.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Prevent default form submission
+                
+                // Validate required checkboxes
+                const requiredCheckboxes = document.querySelectorAll('[name="required-for"]');
+                let atLeastOneChecked = false;
+                
+                requiredCheckboxes.forEach(checkbox => {
+                    if (checkbox.checked) {
+                        atLeastOneChecked = true;
+                    }
+                });
+                
+                if (!atLeastOneChecked) {
+                    requiredForError.style.display = 'block';
+                    return;
+                }
+                
+                requiredForError.style.display = 'none';
+                
+                // Disable submit button to prevent double submission
+                submitButton.disabled = true;
+                submitButton.textContent = 'Submitting...';
+                
+                try {
+                    // Get form values
+                    const formData = {
+                        name: document.getElementById('name').value.trim(),
+                        company: document.getElementById('company').value.trim(),
+                        phone: document.getElementById('phone').value.trim(),
+                        email: document.getElementById('email').value.trim(),
+                        productType: document.getElementById('product').value,
+                        size: document.getElementById('size').value,
+                        height: document.getElementById('height').value + 'mm',
+                        palletType: {
+                            way2: document.getElementById('way2').checked,
+                            way4: document.getElementById('way4').checked,
+                            reversible: document.getElementById('reversible').checked
+                        },
+                        requiredFor: {
+                            warehouse: document.getElementById('warehouse').checked,
+                            shipment: document.getElementById('shipment').checked,
+                            logistics: document.getElementById('logistics').checked
+                        },
+                        additionalMessage: document.getElementById('message').value.trim()
+                    };
+
+
+                    // Submit form
+                    const success = await submitQuoteForm(formData);
+                    
+                    if (success) {
+                        // Reset form and size dropdown on success
+                        newQuoteForm.reset();
+                        const sizeSelect = document.getElementById('size');
+                        sizeSelect.innerHTML = '<option value="">First select product type</option>';
+                        sizeSelect.disabled = true;
+                    }
+                } catch (error) {
+                    alert('An error occurred while submitting the form. Please try again.');
+                } finally {
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Get Quote Now';
                 }
             });
-            
-            if (!atLeastOneChecked) {
-                document.getElementById('requiredForError').style.display = 'block';
-                return;
-            } else {
-                document.getElementById('requiredForError').style.display = 'none';
-            }
-            
-            // Get form values
-            const formData = {
-                name: document.getElementById('name').value,
-                company: document.getElementById('company').value,
-                phone: document.getElementById('phone').value,
-                email: document.getElementById('email').value,
-                product: document.getElementById('product').value,
-                size: document.getElementById('size').value,
-                height: document.getElementById('height').value + 'mm',
-                palletType: {
-                    way2: document.getElementById('way2').checked,
-                    way4: document.getElementById('way4').checked,
-                    reversible: document.getElementById('reversible').checked
-                },
-                requiredFor: {
-                    warehouse: document.getElementById('warehouse').checked,
-                    shipment: document.getElementById('shipment').checked,
-                    logistics: document.getElementById('logistics').checked
-                },
-                message: document.getElementById('message').value
+
+            // Product sizes data
+            const productSizes = {
+                'wooden-pallets': [
+                    '1200 x 800 mm',
+                    '1200 x 1000 mm',
+                    '1100 x 1100 mm',
+                    '1000 x 1000 mm',
+                    '1300 x 1100 mm'
+                ],
+                'plastic-pallets': [
+                    '1200 x 800 mm',
+                    '1200 x 1000 mm',
+                    '1100 x 1100 mm',
+                    '1000 x 1000 mm',
+                    '1300 x 1100 mm'
+                ],
+                'wooden-crates': [
+                    'Custom Sizes Available',
+                    'Standard: 1200 x 800 x 800 mm',
+                    'Standard: 1200 x 1000 x 1000 mm'
+                ],
+                'plastic-crates': [
+                    'Custom Sizes Available',
+                    'Standard: 1200 x 800 x 800 mm',
+                    'Standard: 1200 x 1000 x 1000 mm'
+                ],
+                'plastic-boxes': [
+                    'Custom Sizes Available',
+                    'Small: 600 x 400 x 400 mm',
+                    'Medium: 800 x 600 x 600 mm',
+                    'Large: 1000 x 800 x 800 mm'
+                ]
             };
-            
-            // Here you would typically send this data to a server
-            console.log('Quote request:', formData);
-            
-            // Show success message
-            alert('Thank you for your quote request! We will contact you shortly with pricing details.');
-            this.reset();
-            
-            // Reset size dropdown
-            document.getElementById('size').innerHTML = '<option value="">First select product type</option>';
-            document.getElementById('size').disabled = true;
-        });
 
-
-        // Highlight current page in navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = location.pathname.split('/').pop();
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                if(link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
+            // Dynamic size dropdown
+            document.getElementById('product').addEventListener('change', function() {
+                const sizeSelect = document.getElementById('size');
+                sizeSelect.innerHTML = '';
+                sizeSelect.disabled = !this.value;
+                
+                if (this.value) {
+                    const sizes = productSizes[this.value];
+                    sizes.forEach(size => {
+                        const option = document.createElement('option');
+                        option.value = size;
+                        option.textContent = size;
+                        sizeSelect.appendChild(option);
+                    });
+                } else {
+                    const option = document.createElement('option');
+                    option.value = '';
+                    option.textContent = 'First select product type';
+                    sizeSelect.appendChild(option);
                 }
             });
-            
-            // Initialize mobile menu if it exists
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if(mobileMenuBtn && navLinks) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                });
-            }
         });
-
-        // In your getquote.html page
-document.addEventListener('DOMContentLoaded', function() {
-    const urlParams = new URLSearchParams(window.location.search);
-    const product = urlParams.get('product');
-    const size = urlParams.get('size');
-    
-    if (product && size) {
-        // Auto-select the product dropdown if you have one
-        const productSelect = document.getElementById('product-select');
-        if (productSelect) {
-            productSelect.value = product;
-        }
-        
-        // Auto-select the size field
-        const sizeInput = document.getElementById('size-input');
-        if (sizeInput) {
-            sizeInput.value = size;
-        }
-        
-        // Or if you have size options as radio buttons/select
-        // You can select the appropriate option here
-    }
-});
-
     </script>
     <script src="js/main.js"></script>
     <a href="#" class="back-to-top">

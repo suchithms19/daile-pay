@@ -188,6 +188,61 @@
         });
     </script>
     <script src="js/main.js"></script>
+    <script src="js/api.js"></script>
+    <script>
+        document.addEventListener('DOMContentLoaded', async function() {
+            // Test backend connection on page load
+            const isConnected = await testBackendConnection();
+            if (!isConnected) {
+                alert('Warning: Cannot connect to the server. The form will not work until the server is running.');
+            }
+
+            const contactForm = document.getElementById('contactForm');
+            const submitButton = contactForm.querySelector('button[type="submit"]');
+
+            // Remove any existing event listeners
+            const newContactForm = contactForm.cloneNode(true);
+            contactForm.parentNode.replaceChild(newContactForm, contactForm);
+
+            newContactForm.addEventListener('submit', async function(e) {
+                e.preventDefault(); // Prevent default form submission
+                console.log('Contact form submission started');
+
+                // Disable submit button to prevent double submission
+                submitButton.disabled = true;
+                submitButton.textContent = 'Sending...';
+                
+                try {
+                    // Get form values
+                    const formData = {
+                        name: document.getElementById('name').value.trim(),
+                        company: document.getElementById('company').value.trim(),
+                        phone: document.getElementById('phone').value.trim(),
+                        email: document.getElementById('email').value.trim(),
+                        productType: document.getElementById('product').value,
+                        message: document.getElementById('message').value.trim()
+                    };
+
+                    console.log('Submitting form with data:', formData);
+
+                    // Submit form
+                    const success = await submitContactForm(formData);
+                    
+                    if (success) {
+                        // Reset form on success
+                        newContactForm.reset();
+                    }
+                } catch (error) {
+                    console.error('Form submission error:', error);
+                    alert('An error occurred while submitting the form. Please try again.');
+                } finally {
+                    // Re-enable submit button
+                    submitButton.disabled = false;
+                    submitButton.textContent = 'Send Message';
+                }
+            });
+        });
+    </script>
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
