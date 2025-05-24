@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Get Quote - Daile Pay India</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="styles/animations.css">
+    <link rel="stylesheet" href="styles/main.css">
+    <link rel="stylesheet" href="styles/responsive.css">
+    <style>
+        :root {
+            --primary-color: #4CAF50;
+            --secondary-color: #388E3C;
+            --accent-color: #8BC34A;
+            --text-color: #333333;
+            --light-bg: #f5f5f5;
+            --dark-bg: #2c3e50;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        body {
+            font-family: 'Montserrat', sans-serif;
+            line-height: 1.6;
+            color: var(--text-color);
+            background-color: var(--light-bg);
+        }
+        
+        /* Navigation (same as other pages) */
+        .navbar {
+            position: sticky;
+            top: 0;
+            background: white;
+            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            z-index: 100;
+        }
+        
+        /* Quote Hero */
+        .quote-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/ex2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 8rem 2rem;
+            text-align: center;
+        }
+        
+        .quote-hero h1 {
+            font-size: 3rem;
+            margin-bottom: 1rem;
+        }
+        
+        /* Quote Form Container */
+        .quote-container {
+            max-width: 800px;
+            margin: 3rem auto;
+            padding: 0 2rem;
+        }
+        
+        /* Quote Form */
+        .quote-form {
+            background: white;
+            padding: 2.5rem;
+            border-radius: 8px;
+            box-shadow: 0 5px 15px rgba(0,0,0,0.05);
+            margin-bottom: 3rem;
+        }
+        
+        .quote-form h2 {
+            color: var(--dark-bg);
+            margin-bottom: 1.5rem;
+            font-size: 1.8rem;
+            text-align: center;
+        }
+        
+        .form-group {
+            margin-bottom: 1.5rem;
+        }
+        
+        .form-group label {
+            display: block;
+            margin-bottom: 0.5rem;
+            font-weight: 500;
+        
+        }
+        
+        .form-group label.required::after {
+            content: '*';
+            color: #e74c3c;
+            margin-left: 4px;
+    
+        }
+        
+        .form-control {
+            width: 100%;
+            padding: 0.8rem 1rem;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+            font-size: 1rem;
+            transition: border-color 0.3s ease;
+        }
+        
+        .form-control:focus {
+            outline: none;
+            border-color: var(--primary-color);
+        }
+        
+        select.form-control {
+            appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='currentColor' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+        
+        .input-group {
+            display: flex;
+            align-items: center;
+        }
+        
+        .input-group .form-control {
+            flex: 1;
+        }
+        
+        .input-group .unit {
+            margin-left: 1rem;
+            color: #777;
+        }
+        
+        textarea.form-control {
+            min-height: 150px;
+            resize: vertical;
+        }
+        
+        .checkbox-group {
+            margin: 1rem 0;
+        }
+        
+        .checkbox-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 0.8rem;
+        }
+        
+        .checkbox-item input {
+            margin-right: 0.8rem;
+            width: 18px;
+            height: 18px;
+        }
+        
+        .checkbox-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+            gap: 1rem;
+        }
+        
+        .submit-btn {
+            background: var(--primary-color);
+            color: white;
+            border: none;
+            padding: 1rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: block;
+            width: 100%;
+            margin-top: 2rem;
+        }
+        
+        .submit-btn:hover {
+            background: var(--secondary-color);
+            transform: translateY(-2px);
+        }
+        
+        /* Responsive */
+        @media (max-width: 768px) {
+            .quote-hero h1 {
+                font-size: 2.2rem;
+            }
+            
+            .quote-form {
+                padding: 1.5rem;
+            }
+            
+            .checkbox-grid {
+                grid-template-columns: 1fr;
+            }
+        }
+    </style>
+</head>
+<body class="page-transition">
+    <!-- Navigation (same as other pages) -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <img src="images/Dailelogo.png" alt="Daile Pay Logo">
+            </div>
+            <nav class="nav-links">
+                <ul>
+                    <li><a href="index.html">Home</a></li>
+                    <li><a href="about.html">About Us</a></li>
+                    <li><a href="products.html">Products</a></li>
+                    <li><a href="pricing.html">Pricing</a></li>
+                    <li><a href="contact.html">Contact</a></li>
+                </ul>
+            </nav>
+            <div class="nav-cta">
+                <a href="getquote.html" class="quote-btn">Get Quote</a>
+            </div>
+            <div class="mobile-menu-btn">
+                <i class="fas fa-bars"></i>
+            </div>
+        </div>
+    </header>
+
+    <!-- Quote Hero -->
+    <section class="quote-hero">
+        <h1>Request a Quote</h1>
+        <p>Get customized pricing for your packaging needs</p>
+    </section>
+
+    <!-- Quote Form Container -->
+    <div class="quote-container">
+        <form class="quote-form" id="quoteForm">
+            <h2>Tell Us About Your Requirements</h2>
+            
+            <div class="form-group">
+                <label for="name" class="required">Name</label>
+                <input type="text" id="name" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="company">Company Name</label>
+                <input type="text" id="company" class="form-control">
+            </div>
+            
+            <div class="form-group">
+                <label for="phone" class="required">Phone Number</label>
+                <input type="tel" id="phone" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="email" class="required">Email ID</label>
+                <input type="email" id="email" class="form-control" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="product" class="required">Product Type</label>
+                <select id="product" class="form-control" required>
+                    <option value="">Select a product</option>
+                    <option value="wooden-pallets">Wooden Pallets</option>
+                    <option value="plastic-pallets">Plastic Pallets</option>
+                    <option value="wooden-crates">Wooden Crates</option>
+                    <option value="plastic-crates">Plastic Crates</option>
+                    <option value="plastic-boxes">Plastic Boxes</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="size" class="required">Size</label>
+                <select id="size" class="form-control" required disabled>
+                    <option value="">First select product type</option>
+                </select>
+            </div>
+            
+            <div class="form-group">
+                <label for="height" class="required">Height</label>
+                <div class="input-group">
+                    <input type="number" id="height" class="form-control" required>
+                    <span class="unit">mm</span>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label>Pallet Type </label>
+                <div class="checkbox-group">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="way2" name="pallet-type">
+                        <label for="way2">2 Way Pallets</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="way4" name="pallet-type">
+                        <label for="way4">4 Way Pallets</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="reversible" name="pallet-type">
+                        <label for="reversible">Reversible Pallets</label>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label class="required">Required For</label>
+                <div class="checkbox-grid">
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="warehouse" name="required-for" required>
+                        <label for="warehouse">Warehouse</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="shipment" name="required-for" required>
+                        <label for="shipment">Shipment</label>
+                    </div>
+                    <div class="checkbox-item">
+                        <input type="checkbox" id="logistics" name="required-for" required>
+                        <label for="logistics">Logistics</label>
+                    </div>
+                </div>
+                <small class="error-message" id="requiredForError" style="color: #e74c3c; display: none;">Please select at least one option</small>
+            </div>
+            
+            <div class="form-group">
+                <label for="message">Additional Message</label>
+                <textarea id="message" class="form-control" placeholder="Any special requirements or notes..."></textarea>
+            </div>
+            
+            <button type="submit" class="submit-btn">Get Quote Now</button>
+        </form>
+    </div>
+
+    <!-- Footer (same as other pages) -->
+    <footer class="footer-section">
+        <div class="footer-overlay">
+            <div class="footer-content">
+                <div class="footer-column">
+                    <h3 class="footer-title">Daile Pay</h3>
+                    <p>RENT IT - USE IT - RETURN IT</p>
+                    <p>Your product, our safety!</p>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Quick Links</h3>
+                    <ul class="footer-links">
+                        <li><a href="index.html">Home</a></li>
+                        <li><a href="about.html">About Us</a></li>
+                        <li><a href="products.html">Products</a></li>
+                        <li><a href="pricing.html">Pricing</a></li>
+                        <li><a href="contact.html">Contact</a></li>
+                    </ul>
+                </div>
+                <div class="footer-column">
+                    <h3 class="footer-title">Contact Us</h3>
+                    <p><i class="fas fa-map-marker-alt"></i>Unit 101, Oxford Towers, 139, HAL Old Airport Road Kodihalli, Bangalore North - 560008, Karnataka, India</p>
+                    <p><i class="fas fa-phone"></i> +91-6362739512</p>
+                    <p><i class="fas fa-envelope"></i> dailepay@gmail.com</p>
+                    <p><a href="https://www.linkedin.com/company/daile-pay" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i>Daile Pay India
+
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2025 Daile Pay India. All Rights Reserved.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Product sizes data
+        const productSizes = {
+            'wooden-pallets': [
+                '1200 x 800 mm',
+                '1200 x 1000 mm',
+                '1100 x 1100 mm',
+                '1000 x 1000 mm',
+                '1300 x 1100 mm'
+            ],
+            'plastic-pallets': [
+                '1200 x 800 mm',
+                '1200 x 1000 mm',
+                '1100 x 1100 mm',
+                '1000 x 1000 mm',
+                '1300 x 1100 mm'
+            ],
+            'wooden-crates': [
+                'Custom Sizes Available',
+                'Standard: 1200 x 800 x 800 mm',
+                'Standard: 1200 x 1000 x 1000 mm'
+            ],
+            'plastic-crates': [
+                'Custom Sizes Available',
+                'Standard: 1200 x 800 x 800 mm',
+                'Standard: 1200 x 1000 x 1000 mm'
+            ],
+            'plastic-boxes': [
+                'Custom Sizes Available',
+                'Small: 600 x 400 x 400 mm',
+                'Medium: 800 x 600 x 600 mm',
+                'Large: 1000 x 800 x 800 mm'
+            ]
+        };
+
+        // Dynamic size dropdown
+        document.getElementById('product').addEventListener('change', function() {
+            const sizeSelect = document.getElementById('size');
+            sizeSelect.innerHTML = '';
+            sizeSelect.disabled = !this.value;
+            
+            if (this.value) {
+                const sizes = productSizes[this.value];
+                sizes.forEach(size => {
+                    const option = document.createElement('option');
+                    option.value = size;
+                    option.textContent = size;
+                    sizeSelect.appendChild(option);
+                });
+            } else {
+                const option = document.createElement('option');
+                option.value = '';
+                option.textContent = 'First select product type';
+                sizeSelect.appendChild(option);
+            }
+        });
+
+        // Form validation
+        document.getElementById('quoteForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Validate required checkboxes
+            const requiredCheckboxes = document.querySelectorAll('[name="required-for"]');
+            let atLeastOneChecked = false;
+            
+            requiredCheckboxes.forEach(checkbox => {
+                if (checkbox.checked) {
+                    atLeastOneChecked = true;
+                }
+            });
+            
+            if (!atLeastOneChecked) {
+                document.getElementById('requiredForError').style.display = 'block';
+                return;
+            } else {
+                document.getElementById('requiredForError').style.display = 'none';
+            }
+            
+            // Get form values
+            const formData = {
+                name: document.getElementById('name').value,
+                company: document.getElementById('company').value,
+                phone: document.getElementById('phone').value,
+                email: document.getElementById('email').value,
+                product: document.getElementById('product').value,
+                size: document.getElementById('size').value,
+                height: document.getElementById('height').value + 'mm',
+                palletType: {
+                    way2: document.getElementById('way2').checked,
+                    way4: document.getElementById('way4').checked,
+                    reversible: document.getElementById('reversible').checked
+                },
+                requiredFor: {
+                    warehouse: document.getElementById('warehouse').checked,
+                    shipment: document.getElementById('shipment').checked,
+                    logistics: document.getElementById('logistics').checked
+                },
+                message: document.getElementById('message').value
+            };
+            
+            // Here you would typically send this data to a server
+            console.log('Quote request:', formData);
+            
+            // Show success message
+            alert('Thank you for your quote request! We will contact you shortly with pricing details.');
+            this.reset();
+            
+            // Reset size dropdown
+            document.getElementById('size').innerHTML = '<option value="">First select product type</option>';
+            document.getElementById('size').disabled = true;
+        });
+
+
+        // Highlight current page in navigation
+        document.addEventListener('DOMContentLoaded', function() {
+            const currentPage = location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if(link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
+                }
+            });
+            
+            // Initialize mobile menu if it exists
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if(mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+        });
+
+        // In your getquote.html page
+document.addEventListener('DOMContentLoaded', function() {
+    const urlParams = new URLSearchParams(window.location.search);
+    const product = urlParams.get('product');
+    const size = urlParams.get('size');
+    
+    if (product && size) {
+        // Auto-select the product dropdown if you have one
+        const productSelect = document.getElementById('product-select');
+        if (productSelect) {
+            productSelect.value = product;
+        }
+        
+        // Auto-select the size field
+        const sizeInput = document.getElementById('size-input');
+        if (sizeInput) {
+            sizeInput.value = size;
+        }
+        
+        // Or if you have size options as radio buttons/select
+        // You can select the appropriate option here
+    }
+});
+
+    </script>
+    <script src="js/main.js"></script>
+    <a href="#" class="back-to-top">
+        <i class="fas fa-arrow-up"></i>
+    </a>
+</body>
+</html>

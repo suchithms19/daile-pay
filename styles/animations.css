@@ -1,0 +1,275 @@
+/* Base Animations */
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+@keyframes slideUp {
+    from { transform: translateY(50px); opacity: 0; }
+    to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes slideLeft {
+    from { transform: translateX(-50px); opacity: 0; }
+    to { transform: translateX(0); opacity: 1; }
+}
+
+@keyframes scaleIn {
+    from { transform: scale(0.8); opacity: 0; }
+    to { transform: scale(1); opacity: 1; }
+}
+
+/* Page Load */
+.page-transition {
+    animation: fadeIn 0.8s ease-out;
+}
+
+/* Hero Section Animations */
+.hero-left h1 {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out 0.2s forwards;
+}
+
+.hero-left p {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out 0.4s forwards;
+}
+
+.hero-right h2 {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out 0.3s forwards;
+}
+
+.btn-container {
+    opacity: 0;
+    animation: slideUp 0.8s ease-out 1.5s forwards;
+    background-size: cover;
+    
+}
+/* Process Section Animations - Updated */
+.process-step {
+    opacity: 0;
+    transform: translateY(20px);
+}
+.process-transition{
+        opacity: 0;
+        transform: translateY(30px);
+        transition: all 0.6s ease-out;
+    }
+    
+.process-transition.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+
+.process-step.active {
+    animation: fadeIn 0.5s ease forwards, slideUp 0.5s ease forwards;
+}
+
+.process-box {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.6s ease;
+}
+
+.process-box.active {
+    animation: fadeIn 0.6s ease forwards, slideUp 0.6s ease forwards;
+}
+
+/* Stagger animations for steps */
+.process-step:nth-child(1) { animation-delay: 0.1s; }
+.process-step:nth-child(2) { animation-delay: 0.3s; }
+.process-step:nth-child(3) { animation-delay: 0.5s; }
+
+/* Stagger animations for boxes */
+.process-box:nth-child(1) { animation-delay: 0.2s; }
+.process-box:nth-child(2) { animation-delay: 0.4s; }
+.process-box:nth-child(3) { animation-delay: 0.6s; }
+
+
+
+/* Why Choose Us Animations */
+.benefit-item {
+    opacity: 0;
+    transform: translateX(-30px);
+    transition: all 0.5s ease;
+}
+
+.benefit-item.active {
+    animation: slideLeft 0.5s ease forwards;
+}
+
+.price-tag {
+    opacity: 0;
+    transform: scale(0.9);
+    transition: all 0.5s ease 0.3s;
+}
+
+.price-tag.active {
+    animation: scaleIn 0.5s ease forwards;
+}
+
+/* How It Works Animations */
+.step {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.8s ease;
+}
+
+.step.active {
+    animation: slideUp 0.8s ease forwards;
+}
+
+/* Hover Effects */
+.btn {
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+}
+
+.btn:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+}
+
+.btn::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(
+        120deg,
+        transparent,
+        rgba(255, 255, 255, 0.2),
+        transparent
+    );
+    transition: 0.5s;
+}
+
+.btn:hover::before {
+    left: 100%;
+}
+
+.process-box:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+}
+
+.step-image img:hover {
+    transform: scale(1.03);
+    transition: transform 0.3s ease;
+}
+
+/* Footer Link Effects */
+.footer-links a {
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.footer-links a::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0;
+    height: 2px;
+    background-color: var(--accent-color);
+    transition: width 0.3s ease;
+}
+
+.footer-links a:hover {
+    color: var(--accent-color);
+}
+
+.footer-links a:hover::after {
+    width: 100%;
+}
+/* Fade-in transition for sections */
+.section-transition {
+    opacity: 0;
+    transform: translateY(30px);
+    transition: all 0.6s ease-out;
+}
+
+.section-transition.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Feature card hover animation */
+.feature-card {
+    transition: all 0.3s cubic-bezier(0.25, 0.8, 0.25, 1);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+/* Staggered animation for feature items */
+.feature-item {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+}
+
+.feature-item:nth-child(1) { transition-delay: 0.1s; }
+.feature-item:nth-child(2) { transition-delay: 0.3s; }
+.feature-item:nth-child(3) { transition-delay: 0.5s; }
+
+.feature-item.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+/* Icon animation */
+.feature-icon {
+    transition: all 0.3s ease;
+}
+
+.feature-card:hover .feature-icon {
+    transform: scale(1.1);
+    color: var(--primary-color);
+}
+/* Left to Right Slide Animations */
+.left-slide {
+    opacity: 0;
+    transform: translateX(-20%);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
+.right-slide {
+    opacity: 0;
+    transform: translateX(20%);
+    transition: all 0.8s cubic-bezier(0.68, -0.55, 0.265, 1.55) 0.3s;
+}
+
+.left-slide.visible, .right-slide.visible {
+    opacity: 1;
+    transform: translateX(0);
+}
+
+/* Card Hover Effects */
+.incubation-card:hover {
+    transform: translateY(-5px) rotate(-1deg);
+}
+
+.recognition-card:hover {
+    transform: translateY(-5px) rotate(1deg);
+}
+
+.incubation-card, .recognition-card {
+    transition: all 0.5s ease;
+}
+/* Navbar Animation */
+.navbar {
+    transition: all 0.3s ease;
+    transform: translateY(-100%);
+}
+
+.navbar.visible {
+    transform: translateY(0);
+}
+
