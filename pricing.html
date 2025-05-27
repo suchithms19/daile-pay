@@ -249,6 +249,40 @@
                 transform: scale(1.03) translateY(-5px);
             }
         }
+
+        .footer-column p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column p i {
+            width: 20px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Special handling for address */
+        .footer-column p:has(.fa-map-marker-alt) {
+            align-items: flex-start;
+        }
+
+        .footer-column p:has(.fa-map-marker-alt) i {
+            margin-top: 5px;
+        }
+
+        .footer-column .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer-column .footer-link:hover {
+            color: var(--primary-color);
+        }
     </style>
 </head>
 <body class="page-transition">

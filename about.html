@@ -18,6 +18,77 @@
             box-shadow: 0 2px 10px rgba(0,0,0,0.1);
             z-index: 100;
         }
+
+        .footer-column p {
+            display: flex;
+            align-items: flex-start;
+            gap: 10px;
+            margin-bottom: 10px;
+        }
+
+        .footer-column p i {
+            width: 20px;
+            text-align: center;
+            margin-top: 5px;
+        }
+
+        /* Special handling for address */
+        .footer-column p:has(.fa-map-marker-alt) {
+            align-items: flex-start;
+        }
+
+        .footer-column p:has(.fa-map-marker-alt) i {
+            margin-top: 5px;
+        }
+
+        .footer-column .footer-link {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            color: inherit;
+            text-decoration: none;
+        }
+
+        .footer-column .footer-link:hover {
+            color: var(--primary-color);
+        }
+
+        .center-title {
+            text-align: center;
+            padding: 4rem 2rem;
+            max-width: 800px;
+            margin: 0 auto;
+        }
+
+        .center-title h1 {
+            font-size: 2.5rem;
+            color: #388E3C;
+            line-height: 1.3;
+            font-weight: 700;
+            position: relative;
+            margin-bottom: 2rem;
+        }
+
+        .center-title h1::after {
+            content: '';
+            position: absolute;
+            bottom: -15px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background-color: #388E3C;
+            border-radius: 2px;
+        }
+
+        .about-hero {
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('images/ex2.jpg');
+            background-size: cover;
+            background-position: center;
+            color: white;
+            padding: 2rem 0;
+            margin-bottom: 3rem;
+        }
     </style>
     
 </head>
@@ -70,12 +141,12 @@ and greener. As founders deeply passionate about reuse and sustainability, we lo
 hero of the supply chain: <b>The Humble Pallet</b> — and saw an opportunity.
 
 Pallets are everywhere, yet inefficiency surrounds their use. Businesses either buy low-quality pallets 
-that don’t last or spend a fortune maintaining their own fleet. Worse still, many end up dumped after a 
+that don't last or spend a fortune maintaining their own fleet. Worse still, many end up dumped after a 
 single use. We knew there had to be a better way.
 
 So, we built it.
 
-Our pallet pooling model is designed to work like your favorite streaming platform — you don’t buy, you 
+Our pallet pooling model is designed to work like your favorite streaming platform — you don't buy, you 
 just use. No ownership headaches. No hidden costs. Just a seamless, pay-per-use solution that gets you 
 high-quality pallets exactly when and where you need them. Moreover our IOT based tech enabled 
 pallets help you to locate your products and weigh the products automatically.
@@ -85,7 +156,7 @@ and speed. With the help of our trusted partners and a shared logistics ecosyste
 constant motion — from manufacturers to distributors, from retailers back to suppliers — always 
 circulating, never wasting.
 
-Every time you choose our pallets, you’re saving trees, reducing carbon emissions, and cutting down on 
+Every time you choose our pallets, you're saving trees, reducing carbon emissions, and cutting down on 
 logistics waste — without compromising on performance or reliability.
 
         </pre>
@@ -175,8 +246,7 @@ logistics waste — without compromising on performance or reliability.
                     <p><i class="fas fa-map-marker-alt"></i> Unit 101, Oxford Towers, 139, HAL Old Airport Road Kodihalli, Bangalore North - 560008, Karnataka, India</p>
                     <p><i class="fas fa-phone"></i> +91-6362739512</p>
                     <p><i class="fas fa-envelope"></i> dailepay@gmail.com</p>
-                    <p><a href="https://www.linkedin.com/company/daile-pay" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i>Daile Pay India
-
+                    <p><a href="https://www.linkedin.com/company/daile-pay" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i>Daile Pay India</a></p>
                 </div>
             </div>
             <div class="footer-bottom">

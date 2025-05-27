@@ -313,6 +313,40 @@
                     grid-template-columns: 1fr;
                 }
             }
+
+            .footer-column p {
+                display: flex;
+                align-items: flex-start;
+                gap: 10px;
+                margin-bottom: 10px;
+            }
+
+            .footer-column p i {
+                width: 20px;
+                text-align: center;
+                margin-top: 5px;
+            }
+
+            /* Special handling for address */
+            .footer-column p:has(.fa-map-marker-alt) {
+                align-items: flex-start;
+            }
+
+            .footer-column p:has(.fa-map-marker-alt) i {
+                margin-top: 5px;
+            }
+
+            .footer-column .footer-link {
+                display: flex;
+                align-items: center;
+                gap: 10px;
+                color: inherit;
+                text-decoration: none;
+            }
+
+            .footer-column .footer-link:hover {
+                color: var(--primary-color);
+            }
         </style>
     </head>
 <body class="page-transition">
@@ -520,8 +554,7 @@
                         <p><i class="fas fa-map-marker-alt"></i> Unit 101, Oxford Towers, 139, HAL Old Airport Road Kodihalli, Bangalore North - 560008, Karnataka, India</p>
                         <p><i class="fas fa-phone"></i> +91-6362739512</p>
                         <p><i class="fas fa-envelope"></i> dailepay@gmail.com</p>
-                        <p><a href="https://www.linkedin.com/company/daile-pay" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i>Daile Pay India
-
+                        <p><a href="https://www.linkedin.com/company/daile-pay" target="_blank" class="footer-link"><i class="fab fa-linkedin"></i>Daile Pay India</a></p>
                     </div>
                 </div>
                 <div class="footer-bottom">
