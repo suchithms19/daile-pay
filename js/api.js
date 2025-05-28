@@ -104,4 +104,39 @@ async function submitQuoteForm(formData) {
         handleError(error);
         return false;
     }
+}
+
+// Pickup request submission
+async function submitPickupRequest(formData) {
+    console.log('Submitting pickup request with data:', formData);
+
+    try {
+        // Check backend connectivity first
+        const isConnected = await testBackendConnection();
+        if (!isConnected) {
+            return false;
+        }
+
+        const response = await fetch(`${API_BASE_URL}/pickup`, {
+            method: 'POST',
+            headers: {
+                'Content-Type': 'application/json',
+            },
+            body: JSON.stringify(formData)
+        });
+
+        console.log('Pickup request response status:', response.status);
+        const data = await response.json();
+        console.log('Pickup request response data:', data);
+
+        if (!response.ok) {
+            throw { response: { data } };
+        }
+
+        alert(data.message || 'Thank you for your pickup request! We will contact you shortly to confirm the details.');
+        return true;
+    } catch (error) {
+        handleError(error);
+        return false;
+    }
 } 

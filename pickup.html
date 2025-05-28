@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Us - Daile Pay India</title>
+    <title>Schedule Pickup - Daile Pay India</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
     <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="styles/animations.css">
@@ -24,7 +24,6 @@
             margin-top: 5px;
         }
 
-        /* Special handling for address */
         .footer-column p:has(.fa-map-marker-alt) {
             align-items: flex-start;
         }
@@ -45,8 +44,8 @@
             color: var(--primary-color);
         }
 
-        /* Contact page styles */
-        .contact-hero {
+        /* Additional styles for pickup page */
+        .pickup-hero {
             background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('images/cnt2.png');
             background-size: cover;
             background-position: center;
@@ -58,20 +57,14 @@
             position: relative;
         }
 
-        .contact-hero h1 {
+        .pickup-hero h1 {
             font-size: 2.5em;
             margin-bottom: 20px;
             position: relative;
             z-index: 2;
         }
 
-        .contact-hero p {
-            font-size: 1.2em;
-            position: relative;
-            z-index: 2;
-        }
-
-        .contact-container {
+        .pickup-container {
             display: flex;
             max-width: 1200px;
             margin: 50px auto;
@@ -79,7 +72,7 @@
             gap: 50px;
         }
 
-        .contact-form {
+        .pickup-form {
             flex: 1;
             background: white;
             padding: 30px;
@@ -88,18 +81,18 @@
             margin-bottom: 50px;
         }
 
-        .contact-form h2 {
+        .pickup-form h2 {
             margin-bottom: 30px;
             color: var(--primary-color);
             font-weight: 600;
         }
 
-        .contact-info {
+        .pickup-info {
             flex: 1;
             padding: 30px;
         }
 
-        .contact-info h2 {
+        .pickup-info h2 {
             margin-bottom: 30px;
             color: var(--primary-color);
             font-weight: 600;
@@ -189,27 +182,28 @@
 
         /* Responsive Styles */
         @media (max-width: 992px) {
-            .contact-container {
+            .pickup-container {
                 flex-direction: column;
                 gap: 30px;
             }
 
-            .contact-form, .contact-info {
+            .pickup-form, .pickup-info {
                 width: 100%;
             }
         }
 
         @media (max-width: 768px) {
-            .contact-hero {
+            .pickup-hero {
                 padding: 60px 20px;
             }
 
-            .contact-hero h1 {
+            .pickup-hero h1 {
                 font-size: 2em;
             }
 
-            .contact-hero p {
-                font-size: 1em;
+            .datetime-group {
+                flex-direction: column;
+                gap: 15px;
             }
 
             .info-item {
@@ -224,21 +218,17 @@
         }
 
         @media (max-width: 480px) {
-            .contact-container {
+            .pickup-container {
                 padding: 0 15px;
                 margin: 30px auto;
             }
 
-            .contact-form, .contact-info {
+            .pickup-form, .pickup-info {
                 padding: 20px;
             }
 
-            .contact-hero h1 {
+            .pickup-hero h1 {
                 font-size: 1.8em;
-            }
-
-            .contact-hero p {
-                font-size: 0.9em;
             }
 
             .form-control {
@@ -250,19 +240,11 @@
                 padding: 10px 20px;
                 font-size: 14px;
             }
-
-            .info-content h3 {
-                font-size: 1.1em;
-            }
-
-            .info-content p {
-                font-size: 0.9em;
-            }
         }
     </style>
 </head>
 <body class="page-transition">
-    <!-- Navigation (same as other pages) -->
+    <!-- Navigation -->
     <header class="navbar">
         <div class="nav-container">
             <div class="logo">
@@ -274,7 +256,7 @@
                     <li><a href="about.html">About Us</a></li>
                     <li><a href="products.html">Products</a></li>
                     <li><a href="pricing.html">Pricing</a></li>
-                    <li><a href="contact.html" class="active">Contact</a></li>
+                    <li><a href="contact.html">Contact</a></li>
                 </ul>
             </nav>
             <div class="nav-cta">
@@ -286,18 +268,17 @@
         </div>
     </header>
 
-    <!-- Contact Hero -->
-    <section class="contact-hero">
-        <h1>Get In Touch</h1>
-        <p>We would love to hear from you, Contact us for any enquiries or support</p>
+    <!-- Pickup Hero -->
+    <section class="pickup-hero">
+        <h1>Schedule a Pickup</h1>
     </section>
 
-    <!-- Contact Container -->
-    <div class="contact-container">
-        <!-- Contact Form -->
-        <div class="contact-form">
-            <h2>Send Us a Message</h2>
-            <form id="contactForm">
+    <!-- Pickup Container -->
+    <div class="pickup-container">
+        <!-- Pickup Form -->
+        <div class="pickup-form">
+            <h2>Pickup Request Form</h2>
+            <form id="pickupForm">
                 <div class="form-group">
                     <label for="name">Name*</label>
                     <input type="text" id="name" class="form-control" required>
@@ -335,12 +316,12 @@
                     <textarea id="message" class="form-control" required></textarea>
                 </div>
                 
-                <button type="submit" class="submit-btn">Send Message</button>
+                <button type="submit" class="submit-btn">Schedule Pickup</button>
             </form>
         </div>
         
-        <!-- Contact Info -->
-        <div class="contact-info">
+        <!-- Pickup Info -->
+        <div class="pickup-info">
             <h2>Contact Information</h2>
             
             <div class="info-item">
@@ -373,15 +354,13 @@
                 </div>
             </div>
             
-           
-            
             <div class="map-container">
                 <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3888.1988189093527!2d77.6469765!3d12.959126049999998!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3bae1405f1d55a51%3A0x975e2fcea48b3f4b!2sOXFORD%20TOWERS%2C%20Kodihalli%2C%20Bengaluru%2C%20Karnataka%20560008!5e0!3m2!1sen!2sin!4v1747765326212!5m2!1sen!2sin" width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
             </div>
         </div>
     </div>
 
-    <!-- Footer (same as other pages) -->
+    <!-- Footer -->
     <footer class="footer-section">
         <div class="footer-overlay">
             <div class="footer-content">
@@ -414,27 +393,6 @@
         </div>
     </footer>
 
-    <script>
-        // Highlight current page in navigation
-        document.addEventListener('DOMContentLoaded', function() {
-            const currentPage = location.pathname.split('/').pop();
-            document.querySelectorAll('.nav-links a').forEach(link => {
-                if(link.getAttribute('href') === currentPage) {
-                    link.classList.add('active');
-                }
-            });
-            
-            // Initialize mobile menu if it exists
-            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
-            const navLinks = document.querySelector('.nav-links');
-            
-            if(mobileMenuBtn && navLinks) {
-                mobileMenuBtn.addEventListener('click', () => {
-                    navLinks.classList.toggle('active');
-                });
-            }
-        });
-    </script>
     <script src="js/main.js"></script>
     <script src="js/api.js"></script>
     <script>
@@ -445,54 +403,74 @@
                 alert('Warning: Cannot connect to the server. The form will not work until the server is running.');
             }
 
-            const contactForm = document.getElementById('contactForm');
-            const submitButton = contactForm.querySelector('button[type="submit"]');
-
-            // Remove any existing event listeners
-            const newContactForm = contactForm.cloneNode(true);
-            contactForm.parentNode.replaceChild(newContactForm, contactForm);
-
-            newContactForm.addEventListener('submit', async function(e) {
-                e.preventDefault(); // Prevent default form submission
-                console.log('Contact form submission started');
-
-                // Disable submit button to prevent double submission
-                submitButton.disabled = true;
-                submitButton.textContent = 'Sending...';
-                
-                try {
-                    // Get form values
-                    const formData = {
-                        name: document.getElementById('name').value.trim(),
-                        company: document.getElementById('company').value.trim(),
-                        phone: document.getElementById('phone').value.trim(),
-                        email: document.getElementById('email').value.trim(),
-                        productType: document.getElementById('product').value,
-                        message: document.getElementById('message').value.trim()
-                    };
-
-                    console.log('Submitting form with data:', formData);
-
-                    // Submit form
-                    const success = await submitContactForm(formData);
-                    
-                    if (success) {
-                        // Reset form on success
-                        newContactForm.reset();
-                    }
-                } catch (error) {
-                    console.error('Form submission error:', error);
-                    alert('An error occurred while submitting the form. Please try again.');
-                } finally {
-                    // Re-enable submit button
-                    submitButton.disabled = false;
-                    submitButton.textContent = 'Send Message';
+            // Highlight current page in navigation
+            const currentPage = location.pathname.split('/').pop();
+            document.querySelectorAll('.nav-links a').forEach(link => {
+                if(link.getAttribute('href') === currentPage) {
+                    link.classList.add('active');
                 }
             });
+            
+            // Initialize mobile menu
+            const mobileMenuBtn = document.querySelector('.mobile-menu-btn');
+            const navLinks = document.querySelector('.nav-links');
+            
+            if(mobileMenuBtn && navLinks) {
+                mobileMenuBtn.addEventListener('click', () => {
+                    navLinks.classList.toggle('active');
+                });
+            }
+
+            // Set minimum date for pickup to tomorrow
+            const pickupDateInput = document.getElementById('pickup-date');
+            if(pickupDateInput) {
+                const tomorrow = new Date();
+                tomorrow.setDate(tomorrow.getDate() + 1);
+                pickupDateInput.min = tomorrow.toISOString().split('T')[0];
+            }
+
+            // Form submission handling
+            const pickupForm = document.getElementById('pickupForm');
+            if(pickupForm) {
+                pickupForm.addEventListener('submit', async function(e) {
+                    e.preventDefault();
+                    const submitButton = pickupForm.querySelector('button[type="submit"]');
+                    submitButton.disabled = true;
+                    submitButton.textContent = 'Scheduling...';
+
+                    try {
+                        // Get form data
+                        const formData = {
+                            name: document.getElementById('name').value.trim(),
+                            company: document.getElementById('company').value.trim(),
+                            phone: document.getElementById('phone').value.trim(),
+                            email: document.getElementById('email').value.trim(),
+                            address: document.getElementById('pickup-address').value.trim(),
+                            date: document.getElementById('pickup-date').value,
+                            time: document.getElementById('pickup-time').value,
+                            product: document.getElementById('product').value,
+                            quantity: document.getElementById('quantity').value,
+                            notes: document.getElementById('notes').value.trim()
+                        };
+
+                        // Submit the pickup request
+                        const success = await submitPickupRequest(formData);
+                        if (success) {
+                            pickupForm.reset();
+                        }
+
+                    } catch (error) {
+                        console.error('Form submission error:', error);
+                    } finally {
+                        submitButton.disabled = false;
+                        submitButton.textContent = 'Schedule Pickup';
+                    }
+                });
+            }
         });
     </script>
     <a href="#" class="back-to-top">
         <i class="fas fa-arrow-up"></i>
     </a>
 </body>
-</html>
+</html> 
