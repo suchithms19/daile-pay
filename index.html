@@ -13,6 +13,9 @@
     <link rel="stylesheet" href="styles/responsive.css">
     
     <style>
+        /* Enhanced Responsive Styles */
+        
+        /* Footer styles */
         .footer-column p {
             display: flex;
             align-items: flex-start;
@@ -26,7 +29,6 @@
             margin-top: 5px;
         }
 
-        /* Special handling for address */
         .footer-column p:has(.fa-map-marker-alt) {
             align-items: flex-start;
         }
@@ -45,6 +47,482 @@
 
         .footer-column .footer-link:hover {
             color: var(--primary-color);
+        }
+
+        /* Tablets and Small Laptops (1200px and below) */
+        @media (max-width: 1200px) {
+            .container {
+                padding: 0 15px;
+            }
+            
+            .hero-right h1 {
+                font-size: 5.5rem;
+            }
+            
+            .tagline {
+                font-size: 2rem;
+            }
+            
+            .description h4 {
+                font-size: 1.9rem;
+            }
+            
+            .description p {
+                font-size: 1.1rem;
+            }
+            
+            .section-title {
+                font-size: 2.8rem;
+            }
+            
+            .process-flow {
+                gap: 1.5rem;
+            }
+            
+            .step-box {
+                padding: 1.5rem;
+            }
+        }
+
+        /* Tablets (992px and below) */
+        @media (max-width: 992px) {
+            section {
+                padding: 5rem 0;
+            }
+            
+            .hero {
+                min-height: 80vh;
+                padding: 2rem 5%;
+            }
+            
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+            
+            .hero-right {
+                width: 100%;
+                align-items: center;
+                text-align: center;
+            }
+            
+            .hero-right h1 {
+                font-size: 4.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.8rem;
+            }
+            
+            .btn-container {
+                flex-direction: row;
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.95rem;
+                width: 140px;
+                text-align: center;
+            }
+            
+            .description {
+                text-align: center;
+            }
+            
+            .description h4 {
+                font-size: 1.7rem;
+            }
+            
+            /* Process Section */
+            .process-flow {
+                flex-direction: column;
+                align-items: center;
+                gap: 3rem;
+            }
+            
+            .process-item {
+                max-width: 80%;
+            }
+            
+            .step-box {
+                padding: 2rem;
+            }
+            
+            /* Why Choose Us Section */
+            .why-content {
+                flex-direction: column;
+                gap: 3rem;
+            }
+            
+            .why-left, .why-right {
+                max-width: 100%;
+            }
+            
+            .why-right {
+                text-align: center;
+            }
+            
+            /* How It Works Section */
+            .step {
+                flex-direction: column !important;
+                text-align: center;
+                margin-bottom: 4rem;
+            }
+            
+            .step-image, .step-content {
+                max-width: 100%;
+            }
+            
+            .step-content {
+                margin-top: 2rem;
+                padding: 0;
+            }
+            
+            .step-image {
+                order: -1;
+            }
+            
+            /* Footer */
+            .footer-content {
+                flex-direction: column;
+            }
+            
+            .footer-column {
+                max-width: 100%;
+                margin-bottom: 3rem;
+            }
+        }
+
+        /* Mobile Devices (768px and below) */
+        @media (max-width: 768px) {
+            section {
+                padding: 4rem 0;
+            }
+            
+            .hero {
+                min-height: 70vh;
+                padding: 1.5rem;
+            }
+            
+            .hero-right h1 {
+                font-size: 3.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.5rem;
+                margin: 1rem 0;
+            }
+            
+            .btn-container {
+                flex-direction: row;
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.95rem;
+                width: 140px;
+                text-align: center;
+            }
+            
+            .description h4 {
+                font-size: 1.5rem;
+            }
+            
+            .description p {
+                font-size: 1rem;
+            }
+            
+            .section-title {
+                font-size: 2.2rem;
+                margin-bottom: 2rem;
+            }
+            
+            /* Process Section */
+            .process-item {
+                max-width: 100%;
+            }
+            
+            .step-marker {
+                width: 40px;
+                height: 40px;
+                font-size: 1.2rem;
+            }
+            
+            .step-title {
+                font-size: 1.3rem;
+            }
+            
+            .step-box {
+                padding: 1.5rem;
+            }
+            
+            .step-box h4 {
+                font-size: 1.1rem;
+            }
+            
+            .step-box p {
+                font-size: 0.95rem;
+            }
+            
+            /* Why Choose Us */
+            .benefit-item {
+                flex-direction: column;
+                text-align: center;
+                gap: 1rem;
+            }
+            
+            .benefit-title {
+                font-size: 1.2rem;
+            }
+            
+            .benefit-description {
+                font-size: 0.95rem;
+            }
+            
+            .price-tag {
+                font-size: 1.1rem;
+                padding: 1rem;
+                margin-top: 2rem;
+            }
+            
+            /* How It Works */
+            .step-number-circle {
+                width: 50px;
+                height: 50px;
+                font-size: 1.5rem;
+            }
+            
+            .step-title {
+                font-size: 1.4rem;
+            }
+            
+            .step-description {
+                font-size: 1rem;
+            }
+            
+            .step-image img {
+                max-height: 250px;
+                object-fit: cover;
+            }
+            
+            /* Mobile Navigation */
+            .nav-links {
+                position: fixed;
+                top: 100px;
+                left: -100%;
+                width: 100%;
+                background-color: white;
+                padding: 2rem;
+                box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+                transition: all 0.3s ease;
+                z-index: 999;
+            }
+            
+            .nav-links.active {
+                left: 0;
+            }
+            
+            .nav-links ul {
+                flex-direction: column;
+                gap: 1.5rem;
+            }
+            
+            .mobile-menu-btn {
+                display: block;
+            }
+            
+            .nav-cta {
+                margin-right: 1rem;
+            }
+            
+            /* Logo Slider */
+            .logo-track img {
+                width: 150px;
+                margin: 0 20px;
+            }
+        }
+
+        /* Small Mobile Devices (576px and below) */
+        @media (max-width: 576px) {
+            .hero {
+                padding: 1rem;
+                min-height: 60vh;
+            }
+            
+            .hero-right h1 {
+                font-size: 2.8rem;
+            }
+            
+            .tagline {
+                font-size: 1.3rem;
+            }
+            
+            .btn-container {
+                flex-direction: row;
+                gap: 1rem;
+                justify-content: center;
+            }
+            
+            .btn {
+                padding: 0.8rem 1.2rem;
+                font-size: 0.95rem;
+                width: 140px;
+                text-align: center;
+            }
+            
+            .description h4 {
+                font-size: 1.3rem;
+            }
+            
+            .description p {
+                font-size: 0.95rem;
+            }
+            
+            .section-title {
+                font-size: 1.8rem;
+                margin-bottom: 1.5rem;
+            }
+            
+            .container, .products-container {
+                padding: 0 1rem;
+            }
+            
+            /* Process Section */
+            .step-marker {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+            }
+            
+            .step-title {
+                font-size: 1.1rem;
+            }
+            
+            .step-box {
+                padding: 1.2rem;
+            }
+            
+            .step-box h4 {
+                font-size: 1rem;
+            }
+            
+            .step-box p {
+                font-size: 0.9rem;
+                line-height: 1.5;
+            }
+            
+            /* Why Choose Us */
+            .benefit-title {
+                font-size: 1.1rem;
+            }
+            
+            .benefit-description {
+                font-size: 0.9rem;
+            }
+            
+            .price-tag {
+                font-size: 1rem;
+                padding: 0.8rem;
+            }
+            
+            /* How It Works */
+            .step-number-circle {
+                width: 45px;
+                height: 45px;
+                font-size: 1.3rem;
+            }
+            
+            .step-title {
+                font-size: 1.2rem;
+            }
+            
+            .step-description {
+                font-size: 0.95rem;
+            }
+            
+            /* Logo Slider */
+            .logo-track img {
+                width: 120px;
+                margin: 0 15px;
+            }
+            
+            /* Footer */
+            .footer-overlay {
+                padding: 3rem 1rem 1rem;
+            }
+            
+            .footer-column {
+                margin-bottom: 2rem;
+            }
+            
+            .footer-title {
+                font-size: 1.2rem;
+            }
+            
+            .footer-column p, .footer-links a {
+                font-size: 0.9rem;
+            }
+        }
+
+        /* Extra Small Devices (480px and below) */
+        @media (max-width: 480px) {
+            .hero-right h1 {
+                font-size: 2.5rem;
+            }
+            
+            .tagline {
+                font-size: 1.2rem;
+            }
+            
+            .section-title {
+                font-size: 1.6rem;
+            }
+            
+            .step-box {
+                padding: 1rem;
+            }
+            
+            .benefit-item {
+                padding: 1rem;
+            }
+            
+            .logo-track img {
+                width: 100px;
+                margin: 0 10px;
+            }
+        }
+
+        /* Landscape Mobile Orientation */
+        @media (max-width: 768px) and (orientation: landscape) {
+            .hero {
+                min-height: 100vh;
+                padding: 1rem;
+            }
+            
+            .hero-right h1 {
+                font-size: 3rem;
+            }
+            
+            .tagline {
+                font-size: 1.4rem;
+            }
+            
+            .btn-container {
+                flex-direction: row;
+                gap: 1rem;
+            }
+        }
+
+        /* High DPI Displays */
+        @media (-webkit-min-device-pixel-ratio: 2), (min-resolution: 192dpi) {
+            .logo img {
+                image-rendering: -webkit-optimize-contrast;
+                image-rendering: crisp-edges;
+            }
         }
     </style>
 </head>
