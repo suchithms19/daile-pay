@@ -117,7 +117,7 @@ async function submitPickupRequest(formData) {
             return false;
         }
 
-        const response = await fetch(`${API_BASE_URL}/pickup`, {
+        const response = await fetch(`${API_BASE_URL}/pickup/request`, {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',

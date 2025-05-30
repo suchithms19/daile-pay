@@ -25,10 +25,12 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/daile-pay
 // Import routes
 const contactRoutes = require('./routes/contact');
 const quoteRoutes = require('./routes/quote');
+const pickupRoutes=require("./routes/pickup");
 
 // Use routes
 app.use('/api/contact', contactRoutes);
 app.use('/api/quote', quoteRoutes);
+app.use('/api/pickup',pickupRoutes);
 
 // Error handling middleware
 app.use((err, req, res, next) => {
